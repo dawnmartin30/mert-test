@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Todo = require('../models/todo');
 
-router.get('/todos', (req, res, next) => {
+router.get('/get', (req, res, next) => {
   // This will return all the data, exposing only the id and action field to the client
   Todo.find({}, 'action')
     .then((data) => res.json(data))
     .catch(next);
 });
 
-router.post('/todos', (req, res, next) => {
+router.post('/make', (req, res, next) => {
   if (req.body.action) {
     Todo.create(req.body)
       .then((data) => res.json(data))
@@ -21,7 +21,7 @@ router.post('/todos', (req, res, next) => {
   }
 });
 
-router.delete('/todos/:id', (req, res, next) => {
+router.delete('/delete/:id', (req, res, next) => {
   Todo.findOneAndDelete({ _id: req.params.id })
     .then((data) => res.json(data))
     .catch(next);
