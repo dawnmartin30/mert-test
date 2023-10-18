@@ -27,4 +27,15 @@ router.delete('/delete/:id', (req, res, next) => {
     .catch(next);
 });
 
+router.post('/login', async (req, res, next) => {
+  const client = await MongoClient.connect("mongodb+srv://jo354858:qOe1vNp8wWCAiu9x@cluster0.edvguvx.mongodb.net/");
+  const database = client.db('COP4331');
+  const collection = database.collection('Users');
+  const users = await collection.find({ Username: req.body.username, Password: req.body.password}).toArray();
+  res.json({
+      msg: users
+    });
+  await client.close();
+});
+
 module.exports = router;
