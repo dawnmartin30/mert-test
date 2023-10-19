@@ -28,7 +28,7 @@ router.delete('/delete/:id', (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  const client = await MongoClient.connect("mongodb+srv://jo354858:qOe1vNp8wWCAiu9x@cluster0.edvguvx.mongodb.net/");
+  const client = await MongoClient.connect(Need to replace this with a enviroment variable I will get this fixed soon tm);
   const database = client.db('COP4331');
   const collection = database.collection('Users');
   const users = await collection.find({ Username: req.body.username, Password: req.body.password}).toArray();
