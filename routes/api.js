@@ -28,7 +28,7 @@ router.delete('/delete/:id', (req, res, next) => {
 });
 
 router.post('/login', async (req, res, next) => {
-  const client = await MongoClient.connect(Need to replace this with a enviroment variable I will get this fixed soon tm);
+  const client = await MongoClient.connect(process.env.DB);
   const database = client.db('COP4331');
   const collection = database.collection('Users');
   const users = await collection.find({ Username: req.body.username, Password: req.body.password}).toArray();
@@ -39,7 +39,7 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.post('/register', async (req, res, next) => {
-  const client = await MongoClient.connect(Need to replace this with a enviroment variable I will get this fixed soon tm);
+  const client = await MongoClient.connect(process.env.DB);
   const database = client.db('COP4331');
   const collection = database.collection('Users');
   const users = await collection.find({ Username: req.body.username}).toArray();
