@@ -1,11 +1,9 @@
 function Login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  const loginNotice = document.getElementById("loginNotice");
 
   const urlBase = 'http://67.205.172.88:5000';
 
-  loginNotice.innerHTML = "";
 
   const doLogin = async () => {
     try {
@@ -22,16 +20,15 @@ function Login() {
         const user = JSON.stringify(jsonObject);
 
         if (user === "{\"msg\":[]}") {
-          loginNotice.innerHTML = "* User/Password combination incorrect";
+           console.log("Log in failed");
         } else {
           // Update DateLastLoggedIn here
           updateLastLoggedIn(username);
           console.log(JSON.stringify(jsonObject));
-          loginNotice.innerHTML = "Login Successful";
         }
       }
     } catch (err) {
-      loginNotice.innerHTML = `* ${err.message}`;
+      console.log(err);
     }
   };
 
@@ -52,4 +49,4 @@ function Login() {
   doLogin();
 }
 
-document.getElementById("loginButton").addEventListener("click", Login);
+export { Login };
